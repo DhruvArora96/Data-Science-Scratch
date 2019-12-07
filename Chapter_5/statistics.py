@@ -2,6 +2,7 @@ from __future__ import division
 import sys
 sys.path.append(r"C:\Users\dhruv\Documents\Learning\Data\Data-Science-Scratch\Chapter_3")
 from linear_algebra import sum_of_squares
+from linear_algebra import dot
 from collections import Counter 
 import matplotlib.pyplot as plt
 import random
@@ -47,5 +48,17 @@ def variance(x):
     n=len(x)
     deviatations = de_mean(x)
     return sum_of_squares(deviatations)/(n-1)
+def standard_deviation(x):
+    return math.sqrt(variance(x))
 
-print(math.sqrt(variance(num_friends)))
+def interquartile_range(x):
+    return quantile(x,0.75)-quantile(x,0.25)
+
+def covariance(x,y):
+    n=len(x)
+    return dot(de_mean(x)-de_mean(y))/(n-1)
+def correlation(x,y):
+    sd_x=standard_deviation(x)
+    sd_y=standard_deviation(y)
+
+    return covariance(x,y)/(sd_x*sd_y)
